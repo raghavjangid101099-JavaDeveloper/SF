@@ -1,0 +1,1320 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SF Learn — Design Reference</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600&family=Plus+Jakarta+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* =============================================
+     SF LEARN — DESIGN SYSTEM TOKENS
+     Use these variables across all pages
+  ============================================= */
+      :root {
+        /* --- Brand Blue (Salesforce) --- */
+        --blue-900: #032d60;
+        --blue-700: #0b5cad;
+        --blue-500: #1b96ff;
+        --blue-100: #d8edff;
+        --blue-50: #eaf5ff;
+
+        /* --- Premium Gold --- */
+        --gold-500: #c59b00;
+        --gold-100: #fff3c4;
+        --gold-50: #fffbe6;
+
+        /* --- Slate Neutrals --- */
+        --slate-900: #0a1628;
+        --slate-800: #111f35;
+        --slate-700: #1c2b42;
+        --slate-600: #243448;
+        --slate-500: #3e5374;
+        --slate-300: #8da3bf;
+        --slate-100: #e8edf4;
+        --slate-50: #f4f6fa;
+
+        /* --- Section accent colours --- */
+        --admin-bg: #1d9e75;
+        --apex-bg: #0b5cad;
+        --lwc-bg: #ba7517;
+        --release-bg: #c0467b;
+
+        /* --- Semantic --- */
+        --success: #2e844a;
+        --success-bg: #eaf5ea;
+        --warning: #c07200;
+        --warning-bg: #fff3e0;
+        --danger: #ba0517;
+        --danger-bg: #fdecea;
+
+        /* --- Page colours (dark theme) --- */
+        --page-bg: #0f1923;
+        --surface: #18232f;
+        --surface-2: #1e2d3d;
+        --surface-3: #243347;
+        --border: rgba(255, 255, 255, 0.08);
+        --border-hover: rgba(255, 255, 255, 0.15);
+
+        /* --- Typography --- */
+        --font-display: "Lora", Georgia, serif;
+        --font-ui: "Plus Jakarta Sans", sans-serif;
+        --font-mono: "JetBrains Mono", "Courier New", monospace;
+
+        /* --- Spacing scale --- */
+        --sp-1: 4px;
+        --sp-2: 8px;
+        --sp-3: 12px;
+        --sp-4: 16px;
+        --sp-5: 20px;
+        --sp-6: 24px;
+        --sp-8: 32px;
+        --sp-10: 40px;
+
+        /* --- Border radius --- */
+        --radius-sm: 6px;
+        --radius-md: 8px;
+        --radius-lg: 12px;
+        --radius-xl: 16px;
+        --radius-pill: 999px;
+      }
+
+      /* =============================================
+      RESET & BASE
+    ============================================= */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: var(--font-ui);
+        background: var(--page-bg);
+        color: #fff;
+        min-height: 100vh;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* =============================================
+      NAVBAR
+    ============================================= */
+      .navbar {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: var(--surface);
+        border-bottom: 1px solid var(--border);
+        padding: 0 var(--sp-6);
+        height: 56px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--sp-4);
+      }
+
+      .navbar__logo {
+        display: flex;
+        align-items: center;
+        gap: var(--sp-2);
+        font-family: var(--font-ui);
+        font-weight: 600;
+        font-size: 15px;
+        color: #fff;
+        text-decoration: none;
+        flex-shrink: 0;
+      }
+
+      .navbar__logo-icon {
+        width: 28px;
+        height: 28px;
+        background: var(--admin-bg);
+        border-radius: var(--radius-md);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+      }
+
+      .navbar__links {
+        display: flex;
+        align-items: center;
+        gap: var(--sp-1);
+        flex: 1;
+      }
+
+      .nav-link {
+        padding: 6px 14px;
+        border-radius: var(--radius-md);
+        font-size: 13px;
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.65);
+        cursor: pointer;
+        border: 1px solid transparent;
+        background: none;
+        text-decoration: none;
+        transition: all 0.15s ease;
+        white-space: nowrap;
+      }
+
+      .nav-link:hover {
+        background: var(--surface-3);
+        color: #fff;
+        border-color: var(--border);
+      }
+
+      .nav-link.active {
+        background: var(--surface-3);
+        color: #fff;
+        border-color: var(--border-hover);
+      }
+
+      .navbar__search {
+        display: flex;
+        align-items: center;
+        gap: var(--sp-2);
+        background: var(--surface-2);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-md);
+        padding: 6px 12px;
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.4);
+        cursor: pointer;
+        flex-shrink: 0;
+        transition: border-color 0.15s;
+        min-width: 160px;
+      }
+
+      .navbar__search:hover {
+        border-color: var(--border-hover);
+      }
+
+      .navbar__search svg {
+        width: 14px;
+        height: 14px;
+        opacity: 0.5;
+        flex-shrink: 0;
+      }
+
+      /* =============================================
+      HOME PAGE
+    ============================================= */
+      .home {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: var(--sp-10) var(--sp-6) 60px;
+      }
+
+      /* Hero */
+      .hero {
+        text-align: center;
+        margin-bottom: var(--sp-10);
+      }
+
+      .hero__badge {
+        display: inline-block;
+        border: 1px solid rgba(29, 158, 117, 0.5);
+        color: #1d9e75;
+        background: rgba(29, 158, 117, 0.08);
+        font-size: 12px;
+        font-weight: 500;
+        padding: 4px 14px;
+        border-radius: var(--radius-pill);
+        margin-bottom: var(--sp-5);
+      }
+
+      .hero__title {
+        font-family: var(--font-display);
+        font-size: 40px;
+        font-weight: 600;
+        color: #fff;
+        line-height: 1.2;
+        margin-bottom: var(--sp-4);
+        letter-spacing: -0.5px;
+      }
+
+      .hero__subtitle {
+        font-size: 15px;
+        color: rgba(255, 255, 255, 0.55);
+        max-width: 520px;
+        margin: 0 auto;
+        line-height: 1.7;
+      }
+
+      /* Section cards grid */
+      .section-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--sp-4);
+        margin-bottom: var(--sp-8);
+      }
+
+      .section-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-xl);
+        padding: var(--sp-6);
+        cursor: pointer;
+        transition: all 0.2s ease;
+        text-decoration: none;
+        display: block;
+      }
+
+      .section-card:hover {
+        border-color: var(--border-hover);
+        background: var(--surface-2);
+        transform: translateY(-1px);
+      }
+
+      .section-card__icon {
+        width: 44px;
+        height: 44px;
+        border-radius: var(--radius-lg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: var(--sp-5);
+        font-size: 20px;
+      }
+
+      .section-card__icon--admin {
+        background: var(--admin-bg);
+      }
+      .section-card__icon--apex {
+        background: var(--apex-bg);
+      }
+      .section-card__icon--lwc {
+        background: var(--lwc-bg);
+      }
+      .section-card__icon--release {
+        background: var(--release-bg);
+      }
+
+      .section-card__title {
+        font-size: 15px;
+        font-weight: 600;
+        color: #fff;
+        margin-bottom: var(--sp-2);
+      }
+
+      .section-card__desc {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.5);
+        line-height: 1.6;
+        margin-bottom: var(--sp-4);
+      }
+
+      .section-card__count {
+        font-size: 11px;
+        color: rgba(255, 255, 255, 0.3);
+        font-weight: 500;
+      }
+
+      /* Release notes card spans full row on its own line */
+      .section-grid--4 {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .section-grid--4 .section-card:nth-child(4) {
+        grid-column: 1;
+      }
+
+      /* Recently added */
+      .recent__label {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.3);
+        margin-bottom: var(--sp-3);
+      }
+
+      .recent__list {
+        display: flex;
+        flex-direction: column;
+        gap: var(--sp-2);
+      }
+
+      .recent__item {
+        display: flex;
+        align-items: center;
+        gap: var(--sp-3);
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        padding: 12px var(--sp-4);
+        cursor: pointer;
+        text-decoration: none;
+        transition: border-color 0.15s;
+      }
+
+      .recent__item:hover {
+        border-color: var(--border-hover);
+      }
+
+      .recent__item-text {
+        flex: 1;
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      .recent__item-arrow {
+        width: 16px;
+        height: 16px;
+        color: rgba(255, 255, 255, 0.2);
+      }
+
+      /* Tag / badge */
+      .tag {
+        font-size: 11px;
+        font-weight: 500;
+        padding: 3px 10px;
+        border-radius: var(--radius-pill);
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+
+      .tag--admin {
+        background: rgba(29, 158, 117, 0.15);
+        color: #1d9e75;
+      }
+      .tag--apex {
+        background: rgba(27, 150, 255, 0.15);
+        color: #1b96ff;
+      }
+      .tag--lwc {
+        background: rgba(186, 117, 23, 0.2);
+        color: #efab30;
+      }
+      .tag--release {
+        background: rgba(192, 70, 123, 0.15);
+        color: #e07bb0;
+      }
+      .tag--dev {
+        background: rgba(27, 150, 255, 0.15);
+        color: #1b96ff;
+      }
+      .tag--both {
+        background: rgba(197, 155, 0, 0.15);
+        color: #c59b00;
+      }
+
+      /* =============================================
+      TOPIC PAGE (Admin / Apex / LWC)
+    ============================================= */
+      .topic-layout {
+        display: flex;
+        height: calc(100vh - 56px);
+      }
+
+      /* Sidebar */
+      .sidebar {
+        width: 240px;
+        min-width: 240px;
+        background: var(--surface);
+        border-right: 1px solid var(--border);
+        overflow-y: auto;
+        padding: var(--sp-5) 0;
+        flex-shrink: 0;
+      }
+
+      .sidebar::-webkit-scrollbar {
+        width: 4px;
+      }
+      .sidebar::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .sidebar::-webkit-scrollbar-thumb {
+        background: var(--border);
+        border-radius: 2px;
+      }
+
+      .sidebar__group {
+        margin-bottom: var(--sp-5);
+      }
+
+      .sidebar__group-label {
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.25);
+        padding: var(--sp-1) var(--sp-5);
+        margin-bottom: var(--sp-1);
+      }
+
+      .sidebar__item {
+        display: flex;
+        align-items: center;
+        gap: var(--sp-2);
+        padding: 8px var(--sp-5);
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.55);
+        cursor: pointer;
+        border-left: 2px solid transparent;
+        transition: all 0.12s ease;
+        text-decoration: none;
+      }
+
+      .sidebar__item:hover {
+        background: var(--surface-2);
+        color: rgba(255, 255, 255, 0.85);
+      }
+
+      .sidebar__item.active {
+        background: var(--surface-2);
+        color: #fff;
+        border-left-color: var(--blue-500);
+        font-weight: 500;
+      }
+
+      .sidebar__item-icon {
+        width: 16px;
+        height: 16px;
+        opacity: 0.6;
+        flex-shrink: 0;
+      }
+
+      .sidebar__item.active .sidebar__item-icon {
+        opacity: 1;
+      }
+
+      /* Content area */
+      .content {
+        flex: 1;
+        overflow-y: auto;
+        padding: var(--sp-8) 48px;
+        max-width: 820px;
+      }
+
+      .content::-webkit-scrollbar {
+        width: 4px;
+      }
+      .content::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .content::-webkit-scrollbar-thumb {
+        background: var(--border);
+        border-radius: 2px;
+      }
+
+      .content__breadcrumb {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.3);
+        margin-bottom: var(--sp-3);
+        display: flex;
+        align-items: center;
+        gap: var(--sp-2);
+      }
+
+      .content__breadcrumb span {
+        color: rgba(255, 255, 255, 0.5);
+      }
+
+      .content__title {
+        font-family: var(--font-display);
+        font-size: 28px;
+        font-weight: 600;
+        color: #fff;
+        margin-bottom: var(--sp-3);
+        line-height: 1.3;
+      }
+
+      .content__meta {
+        display: flex;
+        align-items: center;
+        gap: var(--sp-5);
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.3);
+        margin-bottom: var(--sp-8);
+        padding-bottom: var(--sp-6);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .content__meta-item {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      .content__body p {
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.65);
+        line-height: 1.8;
+        margin-bottom: var(--sp-5);
+      }
+
+      .content__body h3 {
+        font-family: var(--font-display);
+        font-size: 18px;
+        font-weight: 600;
+        color: #fff;
+        margin: var(--sp-8) 0 var(--sp-3);
+      }
+
+      /* Info callout box */
+      .callout {
+        background: rgba(27, 150, 255, 0.06);
+        border: 1px solid rgba(27, 150, 255, 0.2);
+        border-left: 3px solid var(--blue-500);
+        border-radius: 0 var(--radius-md) var(--radius-md) 0;
+        padding: var(--sp-4) var(--sp-5);
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.65);
+        line-height: 1.7;
+        margin: var(--sp-5) 0;
+      }
+
+      /* Code block */
+      .code-block {
+        background: #0a1628;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: var(--radius-lg);
+        padding: var(--sp-5) var(--sp-6);
+        font-family: var(--font-mono);
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.8);
+        line-height: 1.7;
+        margin: var(--sp-4) 0;
+        overflow-x: auto;
+      }
+
+      .code-block .kw {
+        color: #569cd6;
+      }
+      .code-block .cl {
+        color: #4ec9b0;
+      }
+      .code-block .str {
+        color: #ce9178;
+      }
+      .code-block .cm {
+        color: rgba(255, 255, 255, 0.3);
+      }
+
+      /* Prev / Next nav footer */
+      .content__footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: var(--sp-10);
+        padding-top: var(--sp-6);
+        border-top: 1px solid var(--border);
+      }
+
+      .nav-btn {
+        display: flex;
+        align-items: center;
+        gap: var(--sp-2);
+        padding: 8px 16px;
+        border: 1px solid var(--border);
+        border-radius: var(--radius-md);
+        font-size: 13px;
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.6);
+        background: none;
+        cursor: pointer;
+        transition: all 0.15s;
+        text-decoration: none;
+      }
+
+      .nav-btn:hover {
+        background: var(--surface-2);
+        color: #fff;
+        border-color: var(--border-hover);
+      }
+
+      .nav-btn svg {
+        width: 14px;
+        height: 14px;
+      }
+
+      .content__progress {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.3);
+      }
+
+      /* =============================================
+      RELEASE NOTES PAGE
+    ============================================= */
+      .release {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: var(--sp-8) var(--sp-6) 60px;
+      }
+
+      .release__header {
+        margin-bottom: var(--sp-6);
+      }
+
+      .release__title {
+        font-family: var(--font-display);
+        font-size: 28px;
+        font-weight: 600;
+        color: #fff;
+        margin-bottom: var(--sp-2);
+      }
+
+      .release__subtitle {
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.45);
+      }
+
+      .release__filters {
+        display: flex;
+        gap: var(--sp-2);
+        margin-bottom: var(--sp-6);
+        flex-wrap: wrap;
+      }
+
+      .filter-btn {
+        padding: 5px 14px;
+        border-radius: var(--radius-pill);
+        font-size: 12px;
+        font-weight: 500;
+        border: 1px solid var(--border);
+        background: none;
+        color: rgba(255, 255, 255, 0.5);
+        cursor: pointer;
+        transition: all 0.15s;
+      }
+
+      .filter-btn:hover,
+      .filter-btn.active {
+        background: var(--surface-2);
+        color: #fff;
+        border-color: var(--border-hover);
+      }
+
+      .release__list {
+        display: flex;
+        flex-direction: column;
+        gap: var(--sp-3);
+      }
+
+      .release-item {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-xl);
+        padding: var(--sp-5) var(--sp-6);
+        transition: border-color 0.15s;
+      }
+
+      .release-item:hover {
+        border-color: var(--border-hover);
+      }
+
+      .release-item__top {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: var(--sp-3);
+        gap: var(--sp-4);
+      }
+
+      .release-item__title {
+        font-size: 14px;
+        font-weight: 600;
+        color: #fff;
+        line-height: 1.4;
+      }
+
+      .release-item__desc {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.5);
+        line-height: 1.6;
+      }
+
+      .release-item__meta {
+        font-size: 11px;
+        color: rgba(255, 255, 255, 0.25);
+        margin-top: var(--sp-3);
+      }
+
+      /* =============================================
+      UTILITY CLASSES
+    ============================================= */
+      .text-primary {
+        color: #fff;
+      }
+      .text-secondary {
+        color: rgba(255, 255, 255, 0.6);
+      }
+      .text-muted {
+        color: rgba(255, 255, 255, 0.3);
+      }
+      .text-blue {
+        color: var(--blue-500);
+      }
+      .text-gold {
+        color: var(--gold-500);
+      }
+
+      .flex {
+        display: flex;
+      }
+      .flex-center {
+        display: flex;
+        align-items: center;
+      }
+      .gap-2 {
+        gap: var(--sp-2);
+      }
+      .gap-3 {
+        gap: var(--sp-3);
+      }
+
+      /* =============================================
+      PAGE SEPARATOR (for this reference doc)
+    ============================================= */
+      .page-section {
+        border-top: 2px dashed rgba(255, 255, 255, 0.06);
+        padding-top: 0;
+        margin-top: 0;
+      }
+
+      .page-section__label {
+        background: var(--surface-3);
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.25);
+        padding: 6px 20px;
+        display: inline-block;
+        border-radius: 0 0 var(--radius-md) 0;
+        margin-bottom: 0;
+      }
+
+      /* =============================================
+     SVG ICONS (inline, reusable)
+  ============================================= */
+    </style>
+  </head>
+  <body>
+    <!-- ==========================================
+     PAGE 1 — HOME PAGE
+========================================== -->
+    <div class="page-section">
+      <div class="page-section__label">Page 1 — Home</div>
+
+      <!-- Navbar -->
+      <nav class="navbar">
+        <a href="#" class="navbar__logo">
+          <div class="navbar__logo-icon">⚡</div>
+          SF Learn
+        </a>
+        <div class="navbar__links">
+          <a href="#" class="nav-link active">Home</a>
+          <a href="#" class="nav-link">Admin</a>
+          <a href="#" class="nav-link">Apex</a>
+          <a href="#" class="nav-link">LWC</a>
+          <a href="#" class="nav-link">Release Notes</a>
+        </div>
+        <div class="navbar__search">
+          <svg
+            viewBox="0 0 16 16"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+          >
+            <circle cx="6.5" cy="6.5" r="4.5" />
+            <path d="M10 10l3 3" />
+          </svg>
+          Search topics...
+        </div>
+      </nav>
+
+      <main class="home">
+        <!-- Hero -->
+        <section class="hero">
+          <div class="hero__badge">Free learning resource</div>
+          <h1 class="hero__title">Learn Salesforce, step by step</h1>
+          <p class="hero__subtitle">
+            Structured guides for Salesforce Admin, Apex development, and
+            Lightning Web Components — plus the latest release notes.
+          </p>
+        </section>
+
+        <!-- Section cards -->
+        <div class="section-grid section-grid--4">
+          <a href="#" class="section-card">
+            <div class="section-card__icon section-card__icon--admin">🛡</div>
+            <div class="section-card__title">Salesforce Admin</div>
+            <div class="section-card__desc">
+              User management, flows, reports, dashboards and more
+            </div>
+            <div class="section-card__count">12 topics</div>
+          </a>
+          <a href="#" class="section-card">
+            <div class="section-card__icon section-card__icon--apex">💻</div>
+            <div class="section-card__title">Apex</div>
+            <div class="section-card__desc">
+              Classes, triggers, SOQL, async apex and test classes
+            </div>
+            <div class="section-card__count">10 topics</div>
+          </a>
+          <a href="#" class="section-card">
+            <div class="section-card__icon section-card__icon--lwc">⚡</div>
+            <div class="section-card__title">LWC</div>
+            <div class="section-card__desc">
+              Lightning components, events, wire service and lifecycle
+            </div>
+            <div class="section-card__count">9 topics</div>
+          </a>
+          <a href="#" class="section-card">
+            <div class="section-card__icon section-card__icon--release">🔔</div>
+            <div class="section-card__title">Release Notes</div>
+            <div class="section-card__desc">
+              What's new in upcoming Salesforce versions
+            </div>
+            <div class="section-card__count">Spring '25</div>
+          </a>
+        </div>
+
+        <!-- Recently added -->
+        <div class="recent__label">Recently Added</div>
+        <div class="recent__list">
+          <a href="#" class="recent__item">
+            <span class="tag tag--admin">Admin</span>
+            <span class="recent__item-text"
+              >Introduction to Flows — building your first automation</span
+            >
+            <svg
+              class="recent__item-arrow"
+              viewBox="0 0 16 16"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+            >
+              <path d="M3 8h10M9 4l4 4-4 4" />
+            </svg>
+          </a>
+          <a href="#" class="recent__item">
+            <span class="tag tag--apex">Apex</span>
+            <span class="recent__item-text"
+              >SOQL Basics — querying Salesforce data</span
+            >
+            <svg
+              class="recent__item-arrow"
+              viewBox="0 0 16 16"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+            >
+              <path d="M3 8h10M9 4l4 4-4 4" />
+            </svg>
+          </a>
+          <a href="#" class="recent__item">
+            <span class="tag tag--lwc">LWC</span>
+            <span class="recent__item-text"
+              >Wire service — connecting components to Salesforce data</span
+            >
+            <svg
+              class="recent__item-arrow"
+              viewBox="0 0 16 16"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+            >
+              <path d="M3 8h10M9 4l4 4-4 4" />
+            </svg>
+          </a>
+        </div>
+      </main>
+    </div>
+
+    <!-- ==========================================
+     PAGE 2 — TOPIC PAGE (Admin shown as example)
+========================================== -->
+    <div class="page-section">
+      <div class="page-section__label">
+        Page 2 — Topic Page (Admin / Apex / LWC)
+      </div>
+
+      <nav class="navbar">
+        <a href="#" class="navbar__logo">
+          <div class="navbar__logo-icon">⚡</div>
+          SF Learn
+        </a>
+        <div class="navbar__links">
+          <a href="#" class="nav-link">Home</a>
+          <a href="#" class="nav-link active">Admin</a>
+          <a href="#" class="nav-link">Apex</a>
+          <a href="#" class="nav-link">LWC</a>
+          <a href="#" class="nav-link">Release Notes</a>
+        </div>
+        <div class="navbar__search">
+          <svg
+            viewBox="0 0 16 16"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+          >
+            <circle cx="6.5" cy="6.5" r="4.5" />
+            <path d="M10 10l3 3" />
+          </svg>
+          Search topics...
+        </div>
+      </nav>
+
+      <div class="topic-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+          <div class="sidebar__group">
+            <div class="sidebar__group-label">Getting started</div>
+            <a href="#" class="sidebar__item active">
+              <svg
+                class="sidebar__item-icon"
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+              >
+                <rect x="2" y="2" width="12" height="12" rx="2" />
+              </svg>
+              Introduction
+            </a>
+            <a href="#" class="sidebar__item">
+              <svg
+                class="sidebar__item-icon"
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+              >
+                <circle cx="8" cy="6" r="3" />
+                <path d="M2 14c0-3.3 2.7-6 6-6s6 2.7 6 6" />
+              </svg>
+              User management
+            </a>
+            <a href="#" class="sidebar__item">
+              <svg
+                class="sidebar__item-icon"
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+              >
+                <rect x="2" y="4" width="6" height="8" rx="1" />
+                <path d="M8 7h6M8 11h4" />
+              </svg>
+              Profiles &amp; roles
+            </a>
+          </div>
+          <div class="sidebar__group">
+            <div class="sidebar__group-label">Automation</div>
+            <a href="#" class="sidebar__item">
+              <svg
+                class="sidebar__item-icon"
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+              >
+                <path d="M2 8c0-3.3 2.7-6 6-6s6 2.7 6 6-2.7 6-6 6" />
+                <path d="M8 5v3l2 2" />
+              </svg>
+              Flows
+            </a>
+            <a href="#" class="sidebar__item">
+              <svg
+                class="sidebar__item-icon"
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+              >
+                <circle cx="8" cy="8" r="5" />
+                <path d="M6 8l2 2 3-3" />
+              </svg>
+              Validation rules
+            </a>
+            <a href="#" class="sidebar__item">
+              <svg
+                class="sidebar__item-icon"
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+              >
+                <path d="M4 8h8M8 4l4 4-4 4" />
+              </svg>
+              Workflow rules
+            </a>
+          </div>
+          <div class="sidebar__group">
+            <div class="sidebar__group-label">Data &amp; Reports</div>
+            <a href="#" class="sidebar__item">
+              <svg
+                class="sidebar__item-icon"
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+              >
+                <rect x="2" y="8" width="3" height="6" rx="1" />
+                <rect x="6.5" y="5" width="3" height="9" rx="1" />
+                <rect x="11" y="2" width="3" height="12" rx="1" />
+              </svg>
+              Reports
+            </a>
+            <a href="#" class="sidebar__item">
+              <svg
+                class="sidebar__item-icon"
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+              >
+                <rect x="2" y="2" width="5" height="5" rx="1" />
+                <rect x="9" y="2" width="5" height="5" rx="1" />
+                <rect x="2" y="9" width="5" height="5" rx="1" />
+                <rect x="9" y="9" width="5" height="5" rx="1" />
+              </svg>
+              Dashboards
+            </a>
+            <a href="#" class="sidebar__item">
+              <svg
+                class="sidebar__item-icon"
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+              >
+                <path d="M8 2v6l3 3" />
+                <circle cx="8" cy="8" r="6" />
+              </svg>
+              Data import
+            </a>
+          </div>
+        </aside>
+
+        <!-- Content -->
+        <main class="content">
+          <div class="content__breadcrumb">
+            Home <span>/</span> <span>Salesforce Admin</span> <span>/</span>
+            <span>Introduction</span>
+          </div>
+          <h1 class="content__title">Introduction to Salesforce Admin</h1>
+          <div class="content__meta">
+            <span class="content__meta-item">
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+              >
+                <circle cx="8" cy="8" r="6" />
+                <path d="M8 5v3l2 2" />
+              </svg>
+              5 min read
+            </span>
+            <span class="content__meta-item">
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+              >
+                <path
+                  d="M4 2h8a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z"
+                />
+                <path d="M6 6h4M6 9h4M6 12h2" />
+              </svg>
+              Topic 1 of 9
+            </span>
+          </div>
+
+          <div class="content__body">
+            <p>
+              Salesforce Administrator is a key role responsible for configuring
+              and maintaining the Salesforce platform for an organisation. As an
+              admin, you manage users, data, security, and automation without
+              writing code.
+            </p>
+
+            <div class="callout">
+              This section covers everything you need to pass the Salesforce
+              Administrator certification and manage a real-world org
+              effectively.
+            </div>
+
+            <h3>What you will learn</h3>
+            <p>
+              This section covers user management, security settings, automation
+              with Flows, reporting, and data management — the core areas for
+              every Salesforce admin.
+            </p>
+            <p>
+              By the end of this section you will be confident navigating Setup,
+              creating users, assigning profiles and permission sets, and
+              building basic automation.
+            </p>
+
+            <h3>Example — creating a user in Apex</h3>
+            <div class="code-block">
+              <span class="cm">// Example: Query all active users</span>
+              <span class="kw">List</span>&lt;<span class="cl">User</span>&gt;
+              users = [ <span class="kw">SELECT</span> Id, Name, Email
+              <span class="kw">FROM</span> <span class="cl">User</span>
+              <span class="kw">WHERE</span> IsActive =
+              <span class="str">true</span> <span class="kw">LIMIT</span> 10 ];
+            </div>
+          </div>
+
+          <div class="content__footer">
+            <a href="#" class="nav-btn">
+              <svg
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+              >
+                <path d="M13 8H3M7 4L3 8l4 4" />
+              </svg>
+              Previous
+            </a>
+            <span class="content__progress">1 / 9 topics</span>
+            <a href="#" class="nav-btn">
+              Next
+              <svg
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+              >
+                <path d="M3 8h10M9 4l4 4-4 4" />
+              </svg>
+            </a>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <!-- ==========================================
+     PAGE 3 — RELEASE NOTES
+========================================== -->
+    <div class="page-section">
+      <div class="page-section__label">Page 3 — Release Notes</div>
+
+      <nav class="navbar">
+        <a href="#" class="navbar__logo">
+          <div class="navbar__logo-icon">⚡</div>
+          SF Learn
+        </a>
+        <div class="navbar__links">
+          <a href="#" class="nav-link">Home</a>
+          <a href="#" class="nav-link">Admin</a>
+          <a href="#" class="nav-link">Apex</a>
+          <a href="#" class="nav-link">LWC</a>
+          <a href="#" class="nav-link active">Release Notes</a>
+        </div>
+        <div class="navbar__search">
+          <svg
+            viewBox="0 0 16 16"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+          >
+            <circle cx="6.5" cy="6.5" r="4.5" />
+            <path d="M10 10l3 3" />
+          </svg>
+          Search topics...
+        </div>
+      </nav>
+
+      <main class="release">
+        <div class="release__header">
+          <h1 class="release__title">Release Notes</h1>
+          <p class="release__subtitle">
+            What's new and changing in upcoming Salesforce versions —
+            simplified.
+          </p>
+        </div>
+
+        <div class="release__filters">
+          <button class="filter-btn active">All</button>
+          <button class="filter-btn">Admin</button>
+          <button class="filter-btn">Developer</button>
+          <button class="filter-btn">Spring '25</button>
+          <button class="filter-btn">Summer '25</button>
+        </div>
+
+        <div class="release__list">
+          <div class="release-item">
+            <div class="release-item__top">
+              <div class="release-item__title">
+                Dynamic Forms now available on all standard objects
+              </div>
+              <span class="tag tag--admin">Admin</span>
+            </div>
+            <div class="release-item__desc">
+              Dynamic Forms allow admins to place individual fields anywhere on
+              a Lightning page, control visibility with rules, and remove the
+              standard record detail component entirely.
+            </div>
+            <div class="release-item__meta">
+              Spring '25 · Generally Available
+            </div>
+          </div>
+
+          <div class="release-item">
+            <div class="release-item__top">
+              <div class="release-item__title">
+                Apex null-safe operator support
+              </div>
+              <span class="tag tag--dev">Developer</span>
+            </div>
+            <div class="release-item__desc">
+              Apex now supports the null-safe operator (?.) to safely navigate
+              object chains without throwing null pointer exceptions,
+              simplifying complex conditional logic.
+            </div>
+            <div class="release-item__meta">Spring '25 · Beta</div>
+          </div>
+
+          <div class="release-item">
+            <div class="release-item__top">
+              <div class="release-item__title">
+                Flow improvements — new collection operators
+              </div>
+              <span class="tag tag--both">Admin + Dev</span>
+            </div>
+            <div class="release-item__desc">
+              Flow Builder now supports collection filter and sort elements
+              natively, reducing the need for loops and decision elements to
+              process record collections.
+            </div>
+            <div class="release-item__meta">Summer '25 · Preview</div>
+          </div>
+
+          <div class="release-item">
+            <div class="release-item__top">
+              <div class="release-item__title">
+                LWC TypeScript support in scratch orgs
+              </div>
+              <span class="tag tag--dev">Developer</span>
+            </div>
+            <div class="release-item__desc">
+              Lightning Web Components now support TypeScript in developer
+              scratch orgs, enabling stronger type checking and improved IDE
+              tooling for component development.
+            </div>
+            <div class="release-item__meta">Summer '25 · Pilot</div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
